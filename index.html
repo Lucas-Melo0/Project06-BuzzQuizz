@@ -16,11 +16,11 @@
     </header>
     <div class="page-content">
         <div class="home-page">
-            <div class="quizz-maker-big">
+            <div class="quizz-maker-big hidden">
                 <p>Você não criou nenhum quizz ainda :(</p>
                 <button onclick ="openQuizzCreatorPage()" class="btn-quizz-creator">Criar quizz</button>
             </div>
-            <div class="quizz-maker-small hidden">
+            <div class="quizz-maker-small">
                 <div class="quizz-header">
                     <p>Seus quizzes</p>
                     <ion-icon onclick ="openQuizzCreatorPage()" name="add-circle"></ion-icon>
@@ -36,9 +36,21 @@
                         <p>O quão Potterhead é você?</p>
                     </div>
                 </div>
-        </div>
             </div>
+            <div class="all-quizzes">
+                <p>Todos os Quizzes</p>
+                <div class="template-container">
+                    <div class="all-quizzes-template">
+                        <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
+                    </div>
+                    <div class="all-quizzes-template" style="background-image: url('assets/buzzquizz.png');">
+                        <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script src="script.js"></script>
 </body>

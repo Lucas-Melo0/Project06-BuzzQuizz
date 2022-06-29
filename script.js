@@ -29,10 +29,22 @@ function storageQuizzData(response){
 function renderQuizzData(){
     let allQuizzes = document.querySelector(".all-quizzes .template-container")
     for (i = 0; i < quizzData.length; i++){
-        allQuizzes.innerHTML += `<div id ="${quizzData[i].id} "class="all-quizzes-template" style="background-image: url('${quizzData[i].image}');">
+        allQuizzes.innerHTML += `<div onclick="openingQuizzPage(this)" id ="${quizzData[i].id} "class="all-quizzes-template" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[i].image}');">
         <p>${quizzData[i].title}</p>
     </div>`
     }
 }
 
 gettingQuizzData()
+
+function openingQuizzPage(element){
+    let selectedQuizzId = Number(element.getAttribute("id"))
+    let pageContent = document.querySelector(".page-content")
+    for (i = 0; i < quizzData.length; i++){
+        if (selectedQuizzId === quizzData[i].id){
+            hideHomePage()
+            pageContent.innerHTML += quizzData[i].title
+
+        }
+    }
+}

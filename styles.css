@@ -23,6 +23,7 @@ h1 {
 }
 button{
     all:unset;
+    cursor: pointer;
 }
 
 /* Classes configuration */
@@ -36,6 +37,11 @@ button{
     margin-left: auto;
     margin-right: auto;
 }
+.home-page {
+    all: inherit;
+    margin-top: 0%;
+}
+
 .quizz-maker-big {
     display: flex;
     width: 100%;
@@ -60,8 +66,13 @@ button{
     padding: 10px;
     color: #EC362D;
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 70
 }
+.btn-quizz-creator:hover{
+    background-color: #EC362D;
+    color: #FFFFFF;
+}
+
 .quizz-maker-small{
     width: 100%;
 }
@@ -77,6 +88,7 @@ button{
     padding-right: 10px;
 }
 .quizz-header ion-icon{
+    cursor: pointer;
     color:#EC362D;
     font-size: 31px;
 }

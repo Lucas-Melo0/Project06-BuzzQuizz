@@ -1,5 +1,7 @@
 const API_URL = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
 let quizzData;
+let index = 0;
+
 function openQuizzCreatorPage (){
     hideHomePage();
     // Function Render Quizz Creator Page
@@ -39,12 +41,16 @@ gettingQuizzData()
 
 function openingQuizzPage(element){
     let selectedQuizzId = Number(element.getAttribute("id"))
-    let pageContent = document.querySelector(".page-content")
-    for (i = 0; i < quizzData.length; i++){
-        if (selectedQuizzId === quizzData[i].id){
+    for (index = 0; index < quizzData.length; index++){
+        if (selectedQuizzId === quizzData[index].id){
             hideHomePage()
-            pageContent.innerHTML += quizzData[i].title
-
+            renderQuizzPage()
         }
     }
+}
+
+function renderQuizzPage(){
+    let quizzPage = document.querySelector(".quizz-page")
+    quizzPage.innerHTML = `<div style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[index].image}');"class="banner">
+    <p>${quizzData[index].title}</p></div>`
 }

@@ -4,6 +4,7 @@
 /* Tags configuration */
 body {
     font-family: 'Roboto', sans-serif;
+    background: #E5E5E5;
 }
 header {
     display: flex;
@@ -30,16 +31,21 @@ button{
 .page-content{
     display: flex;
     flex-wrap: wrap;
+    width: 100vw;
+    max-width: 100vw;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+.home-page {
+    display: flex;
+    flex-wrap: wrap;
     margin-top: 100px;
     width: 90vw;
     max-width: 90vw;
     display: flex;
     margin-left: auto;
     margin-right: auto;
-}
-.home-page {
-    all: inherit;
-    margin-top: 0;
 }
 
 .quizz-maker-big {
@@ -125,7 +131,59 @@ button{
     font-size: 20px;
     font-weight: 700;
 }
-
+.quizz-page {
+    all: inherit;
+    flex-direction: column;
+    
+}
+.banner{
+    display: flex;
+    margin-top: 69px;
+    height: 227px;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.banner p {
+    font-size: 39px;
+    color: #FFFFFF;
+}
+.question-container {
+    height: 625px;
+    display: flex;
+    flex-direction: column;
+    width: 668px;
+    margin: auto;
+    margin-top: 40px;
+    background-color: #FFFFFF;
+    
+}
+.question-template {
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+}
+.question-title  {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #434CA0;
+    height: 138px;
+    font-size: 23px;
+    color: #FFFFFF;
+    font-weight: 700;
+}
+.options {
+    margin-top: 25px;
+}
+.options p {
+    font-size: 20px;
+    font-weight: 500;
+}
 .hidden {
     display:none;
 }

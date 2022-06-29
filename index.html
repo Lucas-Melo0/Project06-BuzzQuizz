@@ -20,5 +20,25 @@
             <button class="btn-quizz-creator">Criar quizz</button>
         </div>
     </div>
+
+    <div class="criarQuizz">
+        <div class="tela1">
+            comece pelo começo
+            <input type="text" placeholder="Título do quizz"class="teclado"/>
+            <input type="text" placeholder="Url da imagem do seu quizz"class="teclado"/>
+            <input type="text" placeholder="Quantidade de perguntas do quizz"class="teclado"/>
+            <input type="text" placeholder="Quantidade de níveis do quizz"class="teclado"/>
+            <div onclick="irTela2()">
+                Prosseguir para criar perguntas
+            </div>
+        </div>
+        <div class="tela2 esconde"></div>
+        <div class="tela3 esconde"></div>
+        <div class="tela4 esconde"></div>
+    </div>
+
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

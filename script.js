@@ -213,7 +213,7 @@ function irTela4()
 const API_URL = "https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes";
 let quizzData;
 let index = 0;
-let clickCounter = 0;
+let correctAnswers = 0;
 
 function openQuizzCreatorPage (){
     hideHomePage();
@@ -300,6 +300,8 @@ function renderQuizzPageQuestions(){
 function displayAnswerResult(element){
     let elementClassList = element.classList.value
     if (elementClassList === "options true"){
+        correctAnswers++
+        console.log(correctAnswers)
         element.querySelector("p").classList.add("green")
         let parentElement = element.parentElement;
         wrongAnswers = parentElement.querySelectorAll(".options.false p")

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="styles.css">
-    <link rel="shortcut icon" href="/assets/buzzquizz.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/buzzquizz.png" type="image/x-icon">
     <title>BuzzQuizz</title>
 </head>
 <body>
@@ -15,9 +15,86 @@
         <h1>BuzzQuizz</h1>
     </header>
     <div class="page-content">
-        <div class="quizz-maker">
-            <p>Você não criou nenhum quizz ainda :(</p>
-            <button class="btn-quizz-creator">Criar quizz</button>
+        <div class="home-page ">
+            <div class="quizz-maker-big ">
+                <p>Você não criou nenhum quizz ainda :(</p>
+                <button onclick ="openQuizzCreatorPage()" class="btn-quizz-creator">Criar quizz</button>
+            </div>
+            <div class="quizz-maker-small">
+                <div class="quizz-header">
+                    <p>Seus quizzes</p>
+                    <ion-icon onclick ="openQuizzCreatorPage()" name="add-circle"></ion-icon>
+                </div>
+                <div class="template-container">
+                    <div class="my-quizzes-template">
+                        <p>O quão Potterhead é você?</p>
+                    </div>
+                    <div class="my-quizzes-template">
+                        <p>O quão Potterhead é você?</p>
+                    </div>
+                    <div class="my-quizzes-template">
+                        <p>O quão Potterhead é você?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="all-quizzes">
+                <p>Todos os Quizzes</p>
+                <div class="template-container">
+                    <div class="all-quizzes-template">
+                        <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
+                    </div>
+                    <div class="all-quizzes-template" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('assets/buzzquizz.png');">
+                        <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="quizz-page ">
+            <div style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('assets/hogwarts.png');"class="banner">
+                <p>Template</p>
+            </div>
+            <div class="question-container">
+                <p class="question-title">Em qual animal Olho-Tonto Moody transfigurou Malfoy?</p>
+                <div class="question-template">
+                    <div class="options">
+                        <img src ="assets/image 3.png">
+                        <p class="answer-text">aaaaa</p>
+                    </div>
+                    <div class="options">
+                        <img src ="assets/image 3.png">
+                        <p class="answer-text">aaaaa</p>
+                    </div>
+                    <div class="options">
+                        <img src ="assets/image 3.png">
+                        <p class="answer-text">aaaaa</p>
+                    </div>
+                    <div class="options">
+                        <img src ="assets/image 3.png">
+                        <p class="answer-text">aaaaa</p>
+                    </div>
+                </div>
+            </div>
+            <div class="question-container">
+                <p class="question-title">Em qual animal Olho-Tonto Moody transfigurou Malfoy?</p>
+                <div class="question-template">
+                    <div class="options">
+                        <img src ="assets/image 3.png">
+                        <p class="answer-text">aaaaa</p>
+                    </div>
+                    <div class="options">
+                        <img src ="assets/image 3.png">
+                        <p class="answer-text">aaaaa</p>
+                    </div>
+                    <div class="options">
+                        <img src ="assets/image 3.png">
+                        <p class="answer-text">aaaaa</p>
+                    </div>
+                    <div class="options">
+                        <img src ="assets/image 3.png">
+                        <p class="answer-text">aaaaa</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -39,6 +116,8 @@
 
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

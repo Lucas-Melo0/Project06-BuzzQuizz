@@ -10,7 +10,7 @@
 }
 body {
     font-family: 'Roboto', sans-serif;
-    background: #E5E5E5;
+    background: #FAFAFA;
 }
 header {
     display: flex;
@@ -22,6 +22,7 @@ header {
     justify-content: center;
     align-items: center;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: 2;
 }
 h1 {
     color: #FFFFFF;
@@ -96,56 +97,115 @@ button{
     font-size: 20px;
     font-weight: 700;
 }
-
-.tela1{
-    background-color: #B9B9B9;
-    width: 400px;
+.criarQuizz{
+    width: 100vw;
+    margin-top: 140px;
+    height: 100%;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    background-color: #fafafa;
 }
-.tela2{
-    width: 400px;
+.tela1, .tela2, .tela3, .tela4{
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
-.tela3{
-    width: 400px;
+.criarQuizz p{
+    font-size: 23px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+.criarQuizz h1{
+    margin: 20px 0;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+}
+
+.inputs input{
+    padding-left: 20px;
+    margin: 4px 0;
+    width: 564px;
+    height: 46px;
+    border: solid 1px #D1D1D1;
+    border-radius:5px ;
+    outline-width: 0;
+    font-size: 19px;
+    font-weight: 400;
+    font-style: italic;
+    color:black;
+}
+.inputs input:first-child{
+    margin-top: 10px;
+}
+
+.inputs input:last-child{
+    margin-bottom: 10px;
+}
+.inputs input::placeholder{
+    color: #BABABA;
+}
+
+.inputs{
+    margin-bottom: 10px;
+    padding-left: 18px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    width: 600px;
+    height: 100%;
+    background-color: white;
+    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.05));
 }
-.tela4{
-    background-color: #B9B9B9;
-    width: 400px;
+
+.px{
+    padding: 0 18px;
+    margin-bottom: 10px;
+    width: 600px;
+    height: 75px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.05));
+}
+.botaoNext{
+    margin-top: 40px;
+    font-size: 21px;
+    font-weight: 400;
+    color: #FFF5F4;
+    width: 370px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EC362D;
+    border-radius: 15px;
 }
 .tela4 img{
     width: 340px;
     border-radius: 5px;
 }
-.p, .nivel1{
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 5px;
-    border: 3px solid red;
-    background-color: #B9B9B9;
+.tela4{
+    position: relative;
 }
-
-
-.px {
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 40px;
-    border-radius: 5px;
-    border: 3px solid red;
-    background-color: #B9B9B9;
+.tela4 h1{
+    font-size: 23px;
+    font-weight: 300;
+    color: white;
+    top: 43%;
+    left: 39%;
+    position: absolute;
 }
-
+.home{
+    margin: 30px;
+    color: #818181;
+    font-size: 21px;
+    font-weight: 400;
+}
 .esconde{
     display: none;
     padding-right: 10px;

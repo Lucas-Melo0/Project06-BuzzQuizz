@@ -348,10 +348,10 @@ function recebeMeuQuizz(resposta)
 {
     console.log(resposta);
 }
-
-const API_URL = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
+const API_URL = "https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes";
 let quizzData;
 let index = 0;
+let correctAnswers = 0;
 
 function openQuizzCreatorPage (){
     hideHomePage();
@@ -390,13 +390,66 @@ function openingQuizzPage(element){
     for (index = 0; index < quizzData.length; index++){
         if (selectedQuizzId === quizzData[index].id){
             hideHomePage()
-            renderQuizzPage()
+            renderQuizzPageBanner()
+            renderQuizzPageQuestions()
         }
     }
 }
-function renderQuizzPage(){
+
+function renderQuizzPageBanner(){
     let quizzPage = document.querySelector(".quizz-page")
-    quizzPage.innerHTML = `<div style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[index].image}');"class="banner">
+    quizzPage.innerHTML += `<div style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[index].image}');"class="banner">
     <p>${quizzData[index].title}</p></div>`
 }
+
+function renderQuizzPageQuestions(){ 
+    let questionsData = quizzData[index].questions
+    console.log(questionsData)
+    let quizzPage = document.querySelector(".quizz-page")
+        questionsData.map((question)=>{
+            quizzPage.innerHTML += `<div class="question-container">
+        <p style ="background-color:${question.color} ; "class="question-title">${question.title}</p>
+        <div class="question-template">
+        <div onclick="displayAnswerResult(this)" class="options ${question.answers[0].isCorrectAnswer}">
+                        <img src ="${question.answers[0].image}">
+                        <p class="answer-text">${question.answers[0].text}</p>
+                    </div>
+                    <div onclick="displayAnswerResult(this)" class="options ${question.answers[1].isCorrectAnswer}">
+                        <img src ="${question.answers[1].image}">
+                        <p class="answer-text">${question.answers[1].text}</p>
+                    </div>
+                    <div onclick="displayAnswerResult(this)" class="options ${question.answers[2].isCorrectAnswer}">
+                        <img src ="${question.answers[2].image}">
+                        <p class="answer-text ">${question.answers[2].text}</p>
+                    </div>
+                    <div onclick="displayAnswerResult(this)" class="options ${question.answers[3].isCorrectAnswer}">
+                        <img src ="${question.answers[3].image}">
+                        <p class="answer-text">${question.answers[3].text}</p>
+                    </div>` 
+        })
+}
+
+function displayAnswerResult(element){
+    let elementClassList = element.classList.value
+    if (elementClassList === "options true"){
+        correctAnswers++
+        console.log(correctAnswers)
+        element.querySelector("p").classList.add("green")
+        let parentElement = element.parentElement;
+        wrongAnswers = parentElement.querySelectorAll(".options.false p")
+        wrongAnswers.forEach(falseOptions => {falseOptions.classList.add("red")
+    });
+  
+    }
+    
+}
+function opacityOptions (){
+    //if img clicked all others img on parent div get opacity
+
+}
+        
+    
+   
+
+    
 

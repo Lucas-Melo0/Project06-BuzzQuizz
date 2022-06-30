@@ -16,11 +16,11 @@
     </header>
     <div class="page-content">
         <div class="home-page ">
-            <div class="quizz-maker-big ">
+            <div class="quizz-maker-big hidden">
                 <p>Você não criou nenhum quizz ainda :(</p>
                 <button onclick ="irTela1()" class="btn-quizz-creator">Criar quizz</button>
             </div>
-            <div class="quizz-maker-small">
+            <div class="quizz-maker-small hidden">
                 <div class="quizz-header">
                     <p>Seus quizzes</p>
                     <ion-icon onclick ="openQuizzCreatorPage()" name="add-circle"></ion-icon>
@@ -50,47 +50,24 @@
             </div>
         </div>
         <div class="quizz-page ">
-            <div style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('assets/hogwarts.png');"class="banner">
-                <p>Template</p>
             </div>
             <div class="question-container">
-                <p class="question-title">Em qual animal Olho-Tonto Moody transfigurou Malfoy?</p>
+                <p class="question-title" style ="background-color: #434CA0;">Em qual animal Olho-Tonto Moody transfigurou Malfoy?</p>
                 <div class="question-template">
-                    <div class="options">
-                        <img src ="assets/image 3.png">
+                    <div class="options-true">
+                        <img class="correct-answer-true" src ="assets/image 3.png">
+                        <p  class="answer-text">aaaaa</p>
+                    </div>
+                    <div class="options-false">
+                        <img class="correct-answer-false" src ="assets/image 3.png">
                         <p class="answer-text">aaaaa</p>
                     </div>
-                    <div class="options">
-                        <img src ="assets/image 3.png">
+                    <div class="options-false">
+                        <img class="correct-answer-false" src ="assets/image 3.png">
                         <p class="answer-text">aaaaa</p>
                     </div>
-                    <div class="options">
-                        <img src ="assets/image 3.png">
-                        <p class="answer-text">aaaaa</p>
-                    </div>
-                    <div class="options">
-                        <img src ="assets/image 3.png">
-                        <p class="answer-text">aaaaa</p>
-                    </div>
-                </div>
-            </div>
-            <div class="question-container">
-                <p class="question-title">Em qual animal Olho-Tonto Moody transfigurou Malfoy?</p>
-                <div class="question-template">
-                    <div class="options">
-                        <img src ="assets/image 3.png">
-                        <p class="answer-text">aaaaa</p>
-                    </div>
-                    <div class="options">
-                        <img src ="assets/image 3.png">
-                        <p class="answer-text">aaaaa</p>
-                    </div>
-                    <div class="options">
-                        <img src ="assets/image 3.png">
-                        <p class="answer-text">aaaaa</p>
-                    </div>
-                    <div class="options">
-                        <img src ="assets/image 3.png">
+                    <div class="options-false">
+                        <img class="correct-answer-false " src ="assets/image 3.png">
                         <p class="answer-text">aaaaa</p>
                     </div>
                 </div>

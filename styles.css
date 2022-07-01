@@ -319,3 +319,35 @@ button{
 .opacity {
     opacity: 0.2;
 }
+.level-container{
+    height: 430px;
+    display: flex;
+    flex-direction: column;
+    width: 668px;
+    margin: auto;
+    margin-top: 40px;
+    background-color: #FFFFFF;
+    
+}
+.level-title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 138px;
+    font-size: 23px;
+    background-color: #EC362D;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+.level-template{
+    display: flex;
+}
+.level-template p {
+    padding: 15px;
+
+}
+.level-template img {
+    width: 364px;
+    height: 273px;
+}

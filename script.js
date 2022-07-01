@@ -409,8 +409,8 @@ function renderQuizzPageBanner(){
 }
 
 function renderQuizzPageQuestions(){ 
+    
     let questionsData = quizzData[index].questions
-    console.log(questionsData)
     let quizzPage = document.querySelector(".quizz-page")
         questionsData.map((question)=>{
             quizzPage.innerHTML += `<div class="question-container">

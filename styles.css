@@ -224,7 +224,8 @@ button{
 .my-quizzes-template,.all-quizzes-template {
     cursor: pointer;
     display: flex;
-    width: 320px;
+    min-width:320px;
+    max-width:320px ;
     height: 181px;
     background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('assets/hogwarts.png');
     background-size: cover;
@@ -237,6 +238,7 @@ button{
     
 }
 .my-quizzes-template p,.all-quizzes-template > p {
+    max-width: 320px;
     font-size: 19px;
     color: #FFFFFF;
     font-weight: 400;
@@ -371,3 +373,18 @@ button{
     color: #818181;
     font-size: 21px;
 }
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #EC362D; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    top:30%;
+    left: 48%;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

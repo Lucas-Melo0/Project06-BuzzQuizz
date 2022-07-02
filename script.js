@@ -410,14 +410,11 @@ let correctAnswer = 0;
 let incorrectAnswer = 0;
 let accuracyRate = 0;
 let levelIndex = 0;
+let globalIndex =0;
 
 
 
-function openQuizzCreatorPage (){
-    hideHomePage();
-    // Function Render Quizz Creator Page
 
-}
 function hideHomePage (){
     let homePage = document.querySelector(".home-page")
     homePage.classList.add("hidden")
@@ -450,22 +447,24 @@ function openingQuizzPage(element){
     for (index = 0; index < quizzData.length; index++){
         if (selectedQuizzId === quizzData[index].id){
             globalIndex = index;
+            showLoaderAndHidePage()
             hideHomePage()
-            renderQuizzPageBanner()
-            renderQuizzPageQuestions()
+            renderQuizzPageBanner(index)
+            renderQuizzPageQuestions(index)
         }
     }
 }
 
-function renderQuizzPageBanner(){
+function renderQuizzPageBanner(element){
     let quizzPage = document.querySelector(".quizz-page")
-    console.log(quizzData[index],quizzData,index)
-    quizzPage.innerHTML += `<div style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[index].image}');"class="banner">
-    <p>${quizzData[index].title}</p></div>`
+    console.log(quizzData[element],quizzData,index)
+    quizzPage.innerHTML += `<div style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[element].image}');"class="banner">
+    <p>${quizzData[element].title}</p></div>`
 }
-function renderQuizzPageQuestions(){ 
+function renderQuizzPageQuestions(element){ 
     
-    let questionsData = quizzData[index].questions
+    let questionsData = quizzData[element].questions
+    console.log(questionsData)
     let quizzPage = document.querySelector(".quizz-page")
         questionsData.map((question)=>{
             quizzPage.innerHTML += `<div class="question-container">
@@ -502,7 +501,7 @@ function renderQuizzLevel(){
     </div>
     </div>
     <div class="quizz-page-end">
-                <button class="restart-quizz">Reiniciar quizz</button>
+                <button onclick="restartingQuizz()" class="restart-quizz">Reiniciar quizz</button>
                 <button onclick="backToHome()" class="home">Voltar para home</button>
             </div>`
 
@@ -584,8 +583,31 @@ function levelCalculator(){
 function backToHome (){
     window.location.reload()
 }
+
+function restartingQuizz(){
+    showLoaderAndHidePage()
+    let quizzPage = document.querySelector(".quizz-page");
+    quizzPage.innerHTML = "";
+    renderQuizzPageBanner(globalIndex);
+    renderQuizzPageQuestions(globalIndex);
+    quizzPage.scrollIntoView(true);
+}
+
+function showLoaderAndHidePage(){
+    let pageContent = document.querySelector(".page-content");
+    pageContent.classList.add("hidden");
+    let loader = document.querySelector(".loader");
+    loader.classList.remove("hidden")
+    setTimeout(removeLoaderAndShowPage,1000)
     
-   
+}
+function removeLoaderAndShowPage(){
+    let pageContent = document.querySelector(".page-content");
+    pageContent.classList.remove("hidden");
+    let loader = document.querySelector(".loader");
+    loader.classList.add("hidden")
+}
+showLoaderAndHidePage()
 
     
 

@@ -403,12 +403,13 @@ function recebeMeuQuizz(resposta)
 }
 
 
-const API_URL = "https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes";
+const API_URL = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes";
 let quizzData;
 let index = 0;
 let correctAnswer = 0;
 let incorrectAnswer = 0;
 let accuracyRate = 0;
+let levelIndex = 0;
 
 
 
@@ -448,10 +449,10 @@ function openingQuizzPage(element){
     let selectedQuizzId = Number(element.getAttribute("id"))
     for (index = 0; index < quizzData.length; index++){
         if (selectedQuizzId === quizzData[index].id){
+            globalIndex = index;
             hideHomePage()
             renderQuizzPageBanner()
             renderQuizzPageQuestions()
-            levelCalculator ()
         }
     }
 }
@@ -487,16 +488,25 @@ function renderQuizzPageQuestions(){
                         <p class="answer-text">${question.answers[3].text}</p>
                     </div>` 
         })
-    quizzPage.innerHTML += `<div class="level-container">
-    <p class="level-title">Voceaaaa</p>
-    <div class="level-template">
-        <img src ="/assets/potterhead.png">
-        <p>ajkdjaskdjaskdjakd</p>
-    </div>
-    </div>`
+        quizzPage.innerHTML+=`<div></div>` 
+        
     
 }
+function renderQuizzLevel(){
+    let quizzPage = document.querySelector(".quizz-page")
+    quizzPage.innerHTML += `<div class="level-container ">
+    <p class="level-title">${accuracyRate}%:${quizzData[globalIndex].levels[levelIndex].title}</p>
+    <div class="level-template">
+        <img src ="${quizzData[globalIndex].levels[levelIndex].image}">
+        <p>${quizzData[globalIndex].levels[levelIndex].text}</p>
+    </div>
+    </div>
+    <div class="quizz-page-end">
+                <button class="restart-quizz">Reiniciar quizz</button>
+                <button onclick="backToHome()" class="home">Voltar para home</button>
+            </div>`
 
+}
 function changeAnswerTextColor(element){
     let elementClassList = element.classList.value
     let parentElement = element.parentElement;
@@ -515,37 +525,64 @@ function changeAnswerTextColor(element){
 }
 function addOpacityOnNotSelected (element){
     
-    let opacityStatus = element.parentElement.querySelectorAll(".options img.opacity")
+    let clickedQuestion = element.parentElement
+    let opacityStatus = clickedQuestion.querySelectorAll(".options img.opacity")
     if (opacityStatus.length === 0){
-        let answersImgs = element.parentElement.querySelectorAll(".options img")
+        let answersImgs = clickedQuestion.querySelectorAll(".options img")
         answersImgs.forEach(img => {img.classList.add("opacity")})
-        element.querySelector("img").classList.remove("opacity")
+        element.querySelector("img").classList.remove("opacity");
         setTimeout(function (){scrollQuestionIntoView(element)},2000);
         if(element.classList[1] === "true"){
-            correctAnswer ++
+            correctAnswer ++;
         }
         else if(element.classList[1] === "false"){
-            incorrectAnswer++
+            incorrectAnswer++;
         }
        
     }
-    accuracyRate = correctAnswer/(incorrectAnswer+correctAnswer)*100;
-    console.log(accuracyRate)
+    levelCalculator()
+    checkForLastQuestion()
     
+    
+    
+    function checkForLastQuestion(){
+        let lastQuestion = clickedQuestion.parentElement.parentElement.lastElementChild.previousElementSibling.lastElementChild
+        if(lastQuestion === clickedQuestion){
+            console.log("penultimo elemento")
+            renderQuizzLevel()
+            setTimeout(function (){scrollLevelIntoView()},2000)
+        }    
+    }
+
 }
 
 function scrollQuestionIntoView(element){
     let questionContainer = element.parentElement.parentElement
     questionContainer.nextSibling.scrollIntoView()
 }
+function scrollLevelIntoView(){
+    let quizzPage = document.querySelector(".quizz-page")
+    quizzPage.scrollIntoView(false)
+}
 
-function levelCalculator (){
-    console.log(quizzData[index].levels)
-    let porcentages = quizzData[index].levels.map(porcentages => porcentages.minValue)
-    for (i = 0; i < porcentages.length; i++){
-        if (porcentages[i] >= accuracyRate)
-        console.log("aaaaaa")
+function levelCalculator(){
+    accuracyRate = Math.round(correctAnswer/(incorrectAnswer+correctAnswer)*100);
+    console.log(accuracyRate)
+    console.log(quizzData[globalIndex].levels)
+    let levelPorcentages = quizzData[globalIndex].levels.map(levels => levels.minValue)
+    let highestLevelIndex = levelPorcentages.indexOf(Math.max(...levelPorcentages))
+    let lowestLevelIndex = levelPorcentages.indexOf(Math.min(...levelPorcentages))
+    if (accuracyRate >= levelPorcentages[highestLevelIndex]){
+        levelIndex = highestLevelIndex;
     }
+    else {
+        levelIndex = lowestLevelIndex;
+    }
+    console.log(levelIndex)
+}
+
+function backToHome (){
+    window.location.reload()
 }
     
    

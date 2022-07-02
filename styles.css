@@ -351,3 +351,23 @@ button{
     width: 364px;
     height: 273px;
 }
+.quizz-page-end{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.restart-quizz{
+    margin-top: 20px;
+    background-color: #EC362D;
+    width: 260px;
+    height: 52px;
+    text-align: center;
+    border-radius: 15px;
+    color:#FFF5F4;
+    font-size: 21px;
+}
+.home {
+    color: #818181;
+    font-size: 21px;
+}

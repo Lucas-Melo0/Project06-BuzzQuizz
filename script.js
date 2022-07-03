@@ -177,7 +177,7 @@ function imprimePerguntas()
                 <input type="text" placeholder="Resposta incorreta 3"/>
                 <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
                 <input type="text" placeholder="URL da imagem 3"/>
-                <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
+            
             </div>
         </div>
          `;

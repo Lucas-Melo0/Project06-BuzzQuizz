@@ -62,7 +62,7 @@ function irTela3()
 }
 function irTela4()
 {
-    nivel(numeroNiveis);
+    //nivel(numeroNiveis);
     if(numeroNiveis%2 === 0 && verificador === numeroNiveis)
     {
         document.querySelector('.tela3').classList.toggle('esconde');
@@ -78,7 +78,7 @@ function irTela4()
         <div class="botaoNext">
         Acessar Quizz
         </div>
-        <div class="home">
+        <div onClick="backToHome ()" class="home">
         Voltar para home
 
     `;
@@ -108,17 +108,28 @@ function imprimePerguntas()
             <div class="pergunta 1 inputs caixa1">
                 <h1>Pergunta 1</h1>
                 <input type="text" placeholder="Texto da pergunta"/>
+                <div class="erro esconde"><p>Sua pergunta deve ter mais de 20 caracteres!</p></div>
                 <input type="text" placeholder="Cor de fundo da pergunta"/>
+                <div class="erro esconde"><p>Sua cor começar em "#", seguida de 6 caracteres hexadecimais, ou seja:\n\
+                números ou letras de A a F!</p></div>
                 <h1>Resposta correta</h1>
                 <input type="text" placeholder="Resposta correta"/>
+                <div class="erro esconde"><p>Preencha os campos de pergunta!</p></div>
                 <input type="text" placeholder="URL da imagem"/>
+                <div class="erro esconde"><p>URL da imagem incorreta!</p></div>
                 <h1>Respostas incorretas</h1>
                 <input type="text" placeholder="Resposta incorreta 1"/>
+                <div class="erro esconde"><p>Preencha os campos de pergunta!</p></div>
                 <input type="text" placeholder="URL da imagem 1"/>
+                <div class="erro esconde"><p>URL da imagem incorreta!</p></div>
                 <input type="text" placeholder="Resposta incorreta 2"/>
+                <div class="erro esconde"><p>Preencha os campos de pergunta!</p></div>
                 <input type="text" placeholder="URL da imagem 2"/>
+                <div class="erro esconde"><p>URL da imagem incorreta!</p></div>
                 <input type="text" placeholder="Resposta incorreta 3"/>
+                <div class="erro esconde"><p>Preencha os campos de pergunta!</p></div>
                 <input type="text" placeholder="URL da imagem 3"/>
+                <div class="erro esconde"><p>URL da imagem incorreta!</p></div>
             </div>
          `;
     for(let i = 1 ; i < numeroPerguntas ; i++)
@@ -132,17 +143,28 @@ function imprimePerguntas()
             <div class="inputs esconde">
                 <h1>Pergunta ${i+1}</h1>
                 <input type="text" placeholder="Texto da pergunta"/>
+                <div class="erro esconde"><p>Sua pergunta deve ter mais de 20 caracteres!</p></div>
                 <input type="text" placeholder="Cor de fundo da pergunta"/>
+                <div class="erro esconde"><p>Sua cor começar em "#", seguida de 6 caracteres hexadecimais, ou seja:\n\
+                números ou letras de A a F!</p></div>
                 <h1>Resposta correta</h1>
                 <input type="text" placeholder="Resposta correta"/>
+                <div class="erro esconde"><p>Preencha os campos de pergunta!</p></div>
                 <input type="text" placeholder="URL da imagem"/>
+                <div class="erro esconde"><p>URL da imagem incorreta!</p></div>
                 <h1>Respostas incorretas</h1>
                 <input type="text" placeholder="Resposta incorreta 1"/>
+                <div class="erro esconde"><p>Preencha os campos de pergunta!</p></div>
                 <input type="text" placeholder="URL da imagem 1"/>
+                <div class="erro esconde"><p>URL da imagem incorreta!</p></div>
                 <input type="text" placeholder="Resposta incorreta 2"/>
+                <div class="erro esconde"><p>Preencha os campos de pergunta!</p></div>
                 <input type="text" placeholder="URL da imagem 2"/>
+                <div class="erro esconde"><p>URL da imagem incorreta!</p></div>
                 <input type="text" placeholder="Resposta incorreta 3"/>
+                <div class="erro esconde"><p>Preencha os campos de pergunta!</p></div>
                 <input type="text" placeholder="URL da imagem 3"/>
+                <div class="erro esconde"><p>URL da imagem incorreta!</p></div>
             </div>
         </div>
          `;
@@ -161,9 +183,13 @@ function imprimeNiveis()
             <div class="inputs p box1">
                 <h1>Nível 1</h1>
                 <input type="text" placeholder="Título do nível"/>
+                <div class="erro esconde"><p>Seu título deve ter mais de 10 caracteres!</p></div>
                 <input type="text" placeholder="% de acerto mínima"/>
+                <div class="erro esconde"><p>Sua % deve ser um valor entre 0 e 100!</p></div>
                 <input type="text" placeholder="URL da imagem do nível"/>
+                <div class="erro esconde"><p>URL da imagem incorreta!</p></div>
                 <input type="text" placeholder="Descrição do nível" />
+                <div class="erro esconde"><p>Sua descrição deve ter mais de 30 caracteres!</p></div>
             </div>
          `;
     for(let i = 1 ; i < numeroNiveis ; i++)
@@ -177,15 +203,19 @@ function imprimeNiveis()
             <div class="inputs esconde">
                 <h1>Nível ${i+1}</h1>
                 <input type="text" placeholder="Título do nível"/>
+                <div class="erro esconde"><p>Seu título deve ter mais de 10 caracteres!</p></div>
                 <input type="text" placeholder="% de acerto mínima"/>
+                <div class="erro esconde"><p>Sua % deve ser um valor entre 0 e 100!</p></div>
                 <input type="text" placeholder="URL da imagem do nível"/>
-                <input type="text" placeholder="Descrição do nível"/>  
+                <div class="erro esconde"><p>URL da imagem incorreta!</p></div>
+                <input type="text" placeholder="Descrição do nível" />
+                <div class="erro esconde"><p>Sua descrição deve ter mais de 30 caracteres!</p></div>  
             </div>
         </div>
          `;
     }
     lista.innerHTML += `
-        <div onclick="irTela4()" class="botaoNext">
+        <div onclick="nivel()" class="botaoNext">
             Finalizar Quizz
         </div>
     `;
@@ -194,39 +224,57 @@ function pergunta(indice)
 {
     for(let i = 1 ; i <= numeroPerguntas ; i++){
         let pergunta = document.querySelector('.caixa'+i+' '+'input:nth-child(2)').value;
-        let cor = document.querySelector('.caixa'+i+' '+'input:nth-child(3)').value;
-        let correta = document.querySelector('.caixa'+i+' '+'input:nth-child(5)').value;
-        let imgCorreta = document.querySelector('.caixa'+i+' '+'input:nth-child(6)').value;
-        let incorreta1 = document.querySelector('.caixa'+i+' '+'input:nth-child(8)').value;
-        let imgIncorreta1 = document.querySelector('.caixa'+i+' '+'input:nth-child(9)').value;
-        let incorreta2 = document.querySelector('.caixa'+i+' '+'input:nth-child(10)').value;
-        let imgIncorreta2 = document.querySelector('.caixa'+i+' '+'input:nth-child(11)').value;
-        let incorreta3 = document.querySelector('.caixa'+i+' '+'input:nth-child(12)').value;
-        let imgIncorreta3 = document.querySelector('.caixa'+i+' '+'input:nth-child(13)').value;
+        let cor = document.querySelector('.caixa'+i+' '+'input:nth-child(4)').value;
+        let correta = document.querySelector('.caixa'+i+' '+'input:nth-child(7)').value;
+        let imgCorreta = document.querySelector('.caixa'+i+' '+'input:nth-child(9)').value;
+        let incorreta1 = document.querySelector('.caixa'+i+' '+'input:nth-child(12)').value;
+        let imgIncorreta1 = document.querySelector('.caixa'+i+' '+'input:nth-child(14)').value;
+        let incorreta2 = document.querySelector('.caixa'+i+' '+'input:nth-child(16)').value;
+        let imgIncorreta2 = document.querySelector('.caixa'+i+' '+'input:nth-child(18)').value;
+        let incorreta3 = document.querySelector('.caixa'+i+' '+'input:nth-child(20)').value;
+        let imgIncorreta3 = document.querySelector('.caixa'+i+' '+'input:nth-child(22)').value;
 
-        if(pergunta.length < 20)
-        {
+        if(pergunta.length < 20){
+            document.querySelector('.caixa'+i+' '+'input:nth-child(2)').classList.add('holderFundo');
+            document.querySelector('.caixa'+i+' '+'div:nth-child(3)').classList.remove('esconde');
             alert("Sua pergunta deve ter mais de 20 caracteres!");        
         }
-        else if(verificaURL(imgCorreta) === false || 
-                verificaURL(imgIncorreta1) === false ||
-                verificaURL(imgIncorreta2) === false ||
-                verificaURL(imgIncorreta3) === false)
-        {
-            alert("URL da imagem incorreta");
+        else if(verificaCor(cor)=== false){
+            document.querySelector('.caixa'+i+' '+'input:nth-child(4)').classList.add('holderFundo');
+            document.querySelector('.caixa'+i+' '+'div:nth-child(5)').classList.remove('esconde');
         }
-        else if(   correta === '' || 
-                incorreta1 === '' ||
-                incorreta2 === '' ||
-                incorreta3 === '')
-        {
-            alert("Preencha os campos de pergunta");
+        else if(verificaURL(imgCorreta) === false){
+            document.querySelector('.caixa'+i+' '+'input:nth-child(9)').classList.add('holderFundo');
+            document.querySelector('.caixa'+i+' '+'div:nth-child(10)').classList.remove('esconde');
         }
-        else if(verificaCor(cor)=== false)
-        {
-            alert(
-                `Sua cor começar em "#", seguida de 6 caracteres hexadecimais, ou seja:\n\
-                números ou letras de A a F`);
+        else if(verificaURL(imgIncorreta1) === false){
+            document.querySelector('.caixa'+i+' '+'input:nth-child(14)').classList.add('holderFundo');
+            document.querySelector('.caixa'+i+' '+'div:nth-child(15)').classList.remove('esconde');
+        }
+        else if(verificaURL(imgIncorreta2) === false){
+            document.querySelector('.caixa'+i+' '+'input:nth-child(18)').classList.add('holderFundo');
+            document.querySelector('.caixa'+i+' '+'div:nth-child(19)').classList.remove('esconde');
+        }
+        else if(verificaURL(imgIncorreta3) === false){
+            document.querySelector('.caixa'+i+' '+'input:nth-child(22)').classList.add('holderFundo');
+            document.querySelector('.caixa'+i+' '+'div:nth-child(23)').classList.remove('esconde');
+        }
+        else if(correta === ''){  
+            document.querySelector('.caixa'+i+' '+'input:nth-child(7)').classList.add('holderFundo');
+            document.querySelector('.caixa'+i+' '+'div:nth-child(8)').classList.remove('esconde');
+        }
+        else if(incorreta1 === ''){  
+            document.querySelector('.caixa'+i+' '+'input:nth-child(12)').classList.add('holderFundo');
+            document.querySelector('.caixa'+i+' '+'div:nth-child(13)').classList.remove('esconde');
+        }
+        else if(incorreta2 === ''){  
+            document.querySelector('.caixa'+i+' '+'input:nth-child(16)').classList.add('holderFundo');
+            document.querySelector('.caixa'+i+' '+'div:nth-child(17)').classList.remove('esconde');
+        }
+        else if(incorreta3 === ''){  
+            document.querySelector('.caixa'+i+' '+'input:nth-child(20)').classList.add('holderFundo');
+            document.querySelector('.caixa'+i+' '+'div:nth-child(21)').classList.remove('esconde');
+            console.log('entrou aqui!');
         }
         else{
             document.querySelector('.tela2').classList.toggle('esconde');
@@ -277,29 +325,34 @@ function nivel(indice)
     for(let i = 1 ; i <= numeroNiveis ; i++){
 
         let titulo = document.querySelector('.box'+i+' '+'input:nth-child(2)').value;
-        let acerto = document.querySelector('.box'+i+' '+'input:nth-child(3)').value;
-        let imgNivel = document.querySelector('.box'+i+' '+'input:nth-child(4)').value;
-        let descricao = document.querySelector('.box'+i+' '+'input:nth-child(5)').value;
+        let acerto = document.querySelector('.box'+i+' '+'input:nth-child(4)').value;
+        let imgNivel = document.querySelector('.box'+i+' '+'input:nth-child(6)').value;
+        let descricao = document.querySelector('.box'+i+' '+'input:nth-child(8)').value;
 
         
         if(titulo.length < 10)
         {
-            alert("Seu título deve ter mais de 10 caracteres!");        
-        }
-        else if(descricao.length < 30)
-        {
-            alert("Sua descrição deve ter mais de 30 caracteres!");        
+            document.querySelector('.box'+i+' '+'input:nth-child(2)').classList.add('holderFundo');
+            document.querySelector('.box'+i+' '+'div:nth-child(3)').classList.remove('esconde');       
         }
         else if(acerto < 0 || acerto > 100 || acerto === ''|| acerto === NaN)
         {
-            alert("Sua % deve ser um valor entre 0 e 100");   
+            document.querySelector('.box'+i+' '+'input:nth-child(4)').classList.add('holderFundo');
+            document.querySelector('.box'+i+' '+'div:nth-child(5)').classList.remove('esconde');  
+        }
+        else if(verificaURL(imgNivel) === false)
+        {
+            document.querySelector('.box'+i+' '+'input:nth-child(6)').classList.add('holderFundo');
+            document.querySelector('.box'+i+' '+'div:nth-child(7)').classList.remove('esconde');
+        }
+        else if(descricao.length < 30)
+        {
+            document.querySelector('.box'+i+' '+'input:nth-child(8)').classList.add('holderFundo');
+            document.querySelector('.box'+i+' '+'div:nth-child(9)').classList.remove('esconde');        
         }
         else if(acerto != 0)
         {
             {
-                //verificador++;
-                //document.querySelector('.tela3').classList.toggle('esconde');
-                //document.querySelector('.tela4').classList.toggle('esconde');
                 quizz.levels[i-1] = 
                 {
                     title: titulo,
@@ -316,11 +369,10 @@ function nivel(indice)
                alert("Pelo menos um de seus níveis deve ter 0%");
                aux = 0;
             }
+            else{
+                irTela4();
+            }
         }  
-        else if(verificaURL(imgNivel) === false)
-        {
-            alert("URL da imagem incorreta");
-        }
         else
         {
             verificador++;
@@ -366,7 +418,7 @@ function verificaURL(string)
 }
 function postQuizz()
 {
-    const promisse1 = axios.post('https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes', quizz);
+    const promisse1 = axios.post('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes', quizz);
     promisse1.catch(deuErro);
     promisse1.then(recebeMeuQuizz);
 }
@@ -401,7 +453,12 @@ function recebeMeuQuizz(resposta)
         window.localStorage.setItem('meusQuizz', serializado); // meusQuizz / '[45,90]'
     }   
 }
-
+function arrayIds()
+{
+    criado = window.localStorage.getItem('meuQuizz');
+    criado = JSON.parse(criado);
+    return criado;
+}
 
 const API_URL = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes";
 let quizzData;
@@ -610,6 +667,7 @@ function removeLoaderAndShowPage(){
     loader.classList.add("hidden")
 }
 showLoaderAndHidePage()
+
 
     
 

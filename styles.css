@@ -11,6 +11,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     background: #FAFAFA;
+    overflow-x: hidden;
 }
 header {
     display: flex;
@@ -33,9 +34,13 @@ button{
     all:unset;
     cursor: pointer;
 }
+img{
+    cursor: pointer;
+}
 
 /* Classes configuration */
 .page-content{
+    overflow-x: hidden;
     display: flex;
     flex-wrap: wrap;
     width: 100vw;

@@ -421,7 +421,6 @@ input.holderFundo, textarea{
     font-size: 16px;
     font-weight: 400;
 }
-
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #EC362D; /* Blue */
@@ -485,7 +484,17 @@ input.holderFundo, textarea{
         max-width: 90px;
         font-size: 10px;
     }
+   .level-container {
+    width: 375px;
+    align-items: center;
+   }
+   .level-template p {
+    width:50%;
     
-
+   }
+   .level-template img {
+    width: 50%;
+    height: 273px;
+}
 }
    

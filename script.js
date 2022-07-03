@@ -530,7 +530,6 @@ function renderQuizzPageQuestions(element){
     let j = [0,1,2,3]
     j = j.sort(() => Math.random() - 0.5)
     let questionsData = quizzData[element].questions
-    console.log(questionsData)
     let quizzPage = document.querySelector(".quizz-page")
         questionsData.map((question)=>{
             quizzPage.innerHTML += `<div class="question-container">
@@ -613,7 +612,6 @@ function addOpacityOnNotSelected (element){
     function checkForLastQuestion(){
         let lastQuestion = clickedQuestion.parentElement.parentElement.lastElementChild.previousElementSibling.lastElementChild
         if(lastQuestion === clickedQuestion){
-            console.log("penultimo elemento")
             renderQuizzLevel()
             setTimeout(function (){scrollLevelIntoView()},2000)
         }    
@@ -632,8 +630,6 @@ function scrollLevelIntoView(){
 
 function levelCalculator(){
     accuracyRate = Math.round(correctAnswer/(incorrectAnswer+correctAnswer)*100);
-    console.log(accuracyRate)
-    console.log(quizzData[globalIndex].levels)
     let levelPorcentages = quizzData[globalIndex].levels.map(levels => levels.minValue)
     let highestLevelIndex = levelPorcentages.indexOf(Math.max(...levelPorcentages))
     let lowestLevelIndex = levelPorcentages.indexOf(Math.min(...levelPorcentages))
@@ -643,7 +639,6 @@ function levelCalculator(){
     else {
         levelIndex = lowestLevelIndex;
     }
-    console.log(levelIndex)
 }
 
 function backToHome (){

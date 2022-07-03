@@ -617,5 +617,14 @@ function backToHome (){
     
    
 
+
+function removeLoaderAndShowPage(){
+    let pageContent = document.querySelector(".page-content");
+    pageContent.classList.remove("hidden");
+    let loader = document.querySelector(".loader");
+    loader.classList.add("hidden")
+}
+showLoaderAndHidePage()
+///aaaaaaaaaaaa
     
 

@@ -4,6 +4,10 @@ let quizz = {};
 let quizzCriado = {};
 let ids = [];
 let verificador = 0;
+let string = [];
+let serializado;
+let criado;
+
 function irTela1()
 {
     document.querySelector('.page-content').classList.toggle('esconde');
@@ -16,23 +20,29 @@ function irTela2()
 {
 
     let titulo = document.querySelector('input:nth-child(1)').value
-    let imagem = document.querySelector('input:nth-child(2)').value
-    numeroPerguntas = document.querySelector('input:nth-child(3)').value
-    numeroNiveis = document.querySelector('input:nth-child(4)').value
+    let imagem = document.querySelector('input:nth-child(3)').value
+    numeroPerguntas = document.querySelector('input:nth-child(5)').value
+    numeroNiveis = document.querySelector('input:nth-child(7)').value
 
     if(titulo.length < 20 || titulo.length > 65)
         {
-            alert("Seu título deve ter entre 20 e 65 caracteres!");        
+            document.querySelector('input:nth-child(1)').classList.add('holderFundo');
+            document.querySelector('.inputs div:nth-child(2)').classList.remove('esconde');        
         }
         else if(verificaURL(imagem) === false)
         {
-            alert("URL da imagem incorreta");
+            document.querySelector('input:nth-child(3)').classList.add('holderFundo');
+            document.querySelector('.inputs div:nth-child(4)').classList.remove('esconde');
         }
-        else if(numeroPerguntas < 3 || numeroNiveis < 2)
+        else if(numeroPerguntas < 3)
         {
-            alert(
-                    `Número mínimo de Perguntas: 3\n\
-                    Número mínimo de Níveis: 2`);
+            document.querySelector('input:nth-child(5)').classList.add('holderFundo');
+            document.querySelector('.inputs div:nth-child(6)').classList.remove('esconde');
+        }
+        else if(numeroNiveis < 2)
+        {
+            document.querySelector('input:nth-child(7)').classList.add('holderFundo');
+            document.querySelector('.inputs div:nth-child(8)').classList.remove('esconde');
         }
         else 
         {
@@ -80,7 +90,7 @@ function irTela4()
         </div>
         <div class="home">
         Voltar para home
-
+        </div>
     `;
 }
 function imprimeTela1()
@@ -89,10 +99,14 @@ function imprimeTela1()
     lista2.innerHTML = `
         <p>Comece pelo começo</p>
         <div class="inputs">
-            <input type="text" placeholder="Título do quizz"class="teclado"/>
-            <input type="text" placeholder="Url da imagem do seu quizz"class="teclado"/>
-            <input type="text" placeholder="Quantidade de perguntas do quizz"class="teclado"/>
-            <input type="text" placeholder="Quantidade de níveis do quizz"class="teclado"/>
+            <input type="text" placeholder="Título do quizz"/>
+            <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
+            <input type="text" placeholder="Url da imagem do seu quizz"/>
+            <div class="erro esconde"><p>URL da imagem incorreta!</p></div>
+            <input type="text" placeholder="Quantidade de perguntas do quizz"/>
+            <div class="erro esconde"><p>Número mínimo de Perguntas: 3!</p></div>
+            <input type="text" placeholder="Quantidade de níveis do quizz"/>
+            <div class="erro esconde"><p>Número mínimo de Níveis: 2!</p></div>
         </div>
         <div onclick="irTela2()" class="botaoNext">
             Prosseguir para criar perguntas
@@ -108,17 +122,27 @@ function imprimePerguntas()
             <div class="pergunta 1 inputs caixa1">
                 <h1>Pergunta 1</h1>
                 <input type="text" placeholder="Texto da pergunta"/>
+                <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
                 <input type="text" placeholder="Cor de fundo da pergunta"/>
+                <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
                 <h1>Resposta correta</h1>
                 <input type="text" placeholder="Resposta correta"/>
+                <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
                 <input type="text" placeholder="URL da imagem"/>
+                <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
                 <h1>Respostas incorretas</h1>
                 <input type="text" placeholder="Resposta incorreta 1"/>
+                <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
                 <input type="text" placeholder="URL da imagem 1"/>
+                <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
                 <input type="text" placeholder="Resposta incorreta 2"/>
+                <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
                 <input type="text" placeholder="URL da imagem 2"/>
+                <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
                 <input type="text" placeholder="Resposta incorreta 3"/>
+                <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
                 <input type="text" placeholder="URL da imagem 3"/>
+                <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
             </div>
          `;
     for(let i = 1 ; i < numeroPerguntas ; i++)
@@ -131,18 +155,29 @@ function imprimePerguntas()
             </div>
             <div class="inputs esconde">
                 <h1>Pergunta ${i+1}</h1>
+                
                 <input type="text" placeholder="Texto da pergunta"/>
+                <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
                 <input type="text" placeholder="Cor de fundo da pergunta"/>
+                <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
                 <h1>Resposta correta</h1>
                 <input type="text" placeholder="Resposta correta"/>
+                <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
                 <input type="text" placeholder="URL da imagem"/>
+                <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
                 <h1>Respostas incorretas</h1>
                 <input type="text" placeholder="Resposta incorreta 1"/>
+                <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
                 <input type="text" placeholder="URL da imagem 1"/>
+                <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
                 <input type="text" placeholder="Resposta incorreta 2"/>
+                <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
                 <input type="text" placeholder="URL da imagem 2"/>
+                <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
                 <input type="text" placeholder="Resposta incorreta 3"/>
+                <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
                 <input type="text" placeholder="URL da imagem 3"/>
+                <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
             </div>
         </div>
          `;
@@ -377,28 +412,22 @@ function deuErro()
 function recebeMeuQuizz(resposta)
 {
     quizzCriado = resposta.data;
-    console.log(resposta);
-    console.log(quizzCriado);
-    console.log(quizzCriado.id);
-
-    let criado = window.localStorage.getItem('meusQuizz');
+    ids = [];
+    criado = window.localStorage.getItem('meuQuizz');
     if(criado === null)
     {
-        ids = quizzCriado.id; //ids = [45]
-        const serializado = JSON.stringify(ids); // serializado = '[45]'
-        window.localStorage.setItem('meusQuizz', serializado); // meusQuizz / '[45]'
+        ids[0] = quizzCriado.id;
+        criado = JSON.stringify(ids);
+        window.localStorage.setItem('meuQuizz', criado);
+        console.log(criado);
     }
     else
-    {
-        const deserializado = JSON.parse(criado); // deserializado = [45]
-        ids = quizzCriado.id; // ids = [90]
-        for(let i = 0 ; i < deserializado.length ; i++ )
-        {
-            ids.push(deserializado[i]); // ids = [45,90]
-            console.log(ids);
-        }
-        const serializado = JSON.stringify(ids); // serializado = '[45,90]'
-        window.localStorage.setItem('meusQuizz', serializado); // meusQuizz / '[45,90]'
+    {   
+        criado = JSON.parse(criado);
+        criado[criado.length] = quizzCriado.id;
+        serializado = JSON.stringify(criado); 
+        window.localStorage.setItem('meuQuizz', serializado); 
+        console.log(serializado);
     }   
 }
 
@@ -440,6 +469,10 @@ function renderAllQuizzesData(){
     for (i = 0; i < quizzData.length; i++){
         allQuizzes.innerHTML += `<div onclick="openingQuizzPage(this)" id ="${quizzData[i].id} "class="all-quizzes-template" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[i].image}');">
         <p>${quizzData[i].title}</p>
+        <div class="delete">
+        <ion-icon name="create-outline"></ion-icon>
+        <ion-icon name="trash-outline"></ion-icon>
+    </div>
     </div>`
     }
 }
@@ -555,7 +588,6 @@ function addOpacityOnNotSelected (element){
     }
 
 }
-
 function scrollQuestionIntoView(element){
     let questionContainer = element.parentElement.parentElement
     questionContainer.nextSibling.scrollIntoView()
@@ -564,7 +596,6 @@ function scrollLevelIntoView(){
     let quizzPage = document.querySelector(".quizz-page")
     quizzPage.scrollIntoView(false)
 }
-
 function levelCalculator(){
     accuracyRate = Math.round(correctAnswer/(incorrectAnswer+correctAnswer)*100);
     console.log(accuracyRate)
@@ -580,7 +611,6 @@ function levelCalculator(){
     }
     console.log(levelIndex)
 }
-
 function backToHome (){
     window.location.reload()
 }

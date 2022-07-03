@@ -138,6 +138,9 @@ button{
     font-style: italic;
     color:black;
 }
+input.holderFundo, textarea{
+    background-color: #FFE9E9;
+}
 .inputs input:first-child{
     margin-top: 10px;
 }
@@ -148,6 +151,7 @@ button{
 .inputs input::placeholder{
     color: #BABABA;
 }
+
 
 .inputs{
     margin-bottom: 10px;
@@ -209,6 +213,35 @@ button{
 .esconde{
     display: none;
     padding-right: 10px;
+}
+
+.delete{
+    position: absolute;
+    top: 9px;
+    right: -43px;
+    width: 43px;
+    height: 87px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #EC362D;
+    border-radius: 10px 0 0 10px;
+    opacity: 0;
+    transition: all .3s;
+}
+.delete ion-icon{
+    margin: 8px;
+    font-size: 22px;
+    cursor: pointer;
+    color: white;
+}
+.delete ion-icon:nth-child(1){
+    margin-left: 11px;
+}
+.all-quizzes-template:hover .delete {
+    right: 0;
+    opacity: 1;
 }
 .quizz-header ion-icon{
     cursor: pointer;
@@ -371,3 +404,14 @@ button{
     color: #818181;
     font-size: 21px;
 }
+
+.all-quizzes-template
+{
+    position: relative;
+}
+.erro p{
+    color: #EC362D;
+    font-size: 16px;
+    font-weight: 400;
+}
+

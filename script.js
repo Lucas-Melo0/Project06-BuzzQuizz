@@ -491,13 +491,21 @@ function storageQuizzData(response){
 }
 function renderAllQuizzesData(){
     let allQuizzes = document.querySelector(".all-quizzes .template-container")
+    let myQuizzes = document.querySelector(".quizz-maker-small .template-container")
     for (i = 0; i < quizzData.length; i++){
-        allQuizzes.innerHTML += `<div onclick="openingQuizzPage(this)" id ="${quizzData[i].id} "class="all-quizzes-template" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[i].image}');">
+        if (quizzData[i].id === 3266){
+            myQuizzes.innerHTML +=`<div onclick="openingQuizzPage(this)" id ="${quizzData[i].id} "class="my-quizzes-template" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[i].image}');">
+            <p>${quizzData[i].title}</p>
+        </div>`
+        }
+        else {
+            allQuizzes.innerHTML += `<div onclick="openingQuizzPage(this)" id ="${quizzData[i].id} "class="all-quizzes-template" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[i].image}');">
         <p>${quizzData[i].title}</p>
     </div>`
+        }
     }
 }
-gettingQuizzData()
+
 
 function openingQuizzPage(element){
     let selectedQuizzId = Number(element.getAttribute("id"))
@@ -519,7 +527,8 @@ function renderQuizzPageBanner(element){
     <p>${quizzData[element].title}</p></div>`
 }
 function renderQuizzPageQuestions(element){ 
-    
+    let j = [0,1,2,3]
+    j = j.sort(() => Math.random() - 0.5)
     let questionsData = quizzData[element].questions
     console.log(questionsData)
     let quizzPage = document.querySelector(".quizz-page")
@@ -527,21 +536,21 @@ function renderQuizzPageQuestions(element){
             quizzPage.innerHTML += `<div class="question-container">
         <p style ="background-color:${question.color} ; "class="question-title">${question.title}</p>
         <div class="question-template">
-        <div onclick="changeAnswerTextColor(this)" class="options ${question.answers[0].isCorrectAnswer}">
-                        <img src ="${question.answers[0].image}">
-                        <p class="answer-text">${question.answers[0].text}</p>
+        <div onclick="changeAnswerTextColor(this)" class="options ${question.answers[j[0]].isCorrectAnswer}">
+                        <img src ="${question.answers[j[0]].image}">
+                        <p class="answer-text">${question.answers[j[0]].text}</p>
                     </div>
-                    <div onclick="changeAnswerTextColor(this)" class="options ${question.answers[1].isCorrectAnswer}">
-                        <img src ="${question.answers[1].image}">
-                        <p class="answer-text">${question.answers[1].text}</p>
+                    <div onclick="changeAnswerTextColor(this)" class="options ${question.answers[j[1]].isCorrectAnswer}">
+                        <img src ="${question.answers[j[1]].image}">
+                        <p class="answer-text">${question.answers[j[1]].text}</p>
                     </div>
-                    <div onclick="changeAnswerTextColor(this)" class="options ${question.answers[2].isCorrectAnswer}">
-                        <img src ="${question.answers[2].image}">
-                        <p class="answer-text ">${question.answers[2].text}</p>
+                    <div onclick="changeAnswerTextColor(this)" class="options ${question.answers[j[2]].isCorrectAnswer}">
+                        <img src ="${question.answers[j[2]].image}">
+                        <p class="answer-text ">${question.answers[j[2]].text}</p>
                     </div>
-                    <div onclick="changeAnswerTextColor(this)" class="options ${question.answers[3].isCorrectAnswer}">
-                        <img src ="${question.answers[3].image}">
-                        <p class="answer-text">${question.answers[3].text}</p>
+                    <div onclick="changeAnswerTextColor(this)" class="options ${question.answers[j[3]].isCorrectAnswer}">
+                        <img src ="${question.answers[j[3]].image}">
+                        <p class="answer-text">${question.answers[j[3]].text}</p>
                     </div>` 
         })
         quizzPage.innerHTML+=`<div></div>` 
@@ -667,7 +676,7 @@ function removeLoaderAndShowPage(){
     loader.classList.add("hidden")
 }
 showLoaderAndHidePage()
-
+gettingQuizzData()
 
     
 

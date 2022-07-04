@@ -422,7 +422,7 @@ function verificaURL(string)
 }
 function postQuizz()
 {
-    const promisse1 = axios.post('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes', quizz);
+    const promisse1 = axios.post('https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes', quizz);
     promisse1.catch(deuErro);
     promisse1.then(recebeMeuQuizz);
 }
@@ -522,8 +522,8 @@ function acessaQuizzCriado()
 
 }
 
-const API_URL2= "https://mock-api.driven.com.br/api/v6/buzzquizz";
-const API_URL = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes";
+const API_URL2= "https://mock-api.driven.com.br/api/v7/buzzquizz";
+const API_URL = "https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes";
 let quizzData;
 let index = 0;
 let correctAnswer = 0;

@@ -6,6 +6,7 @@ let ids = [];
 let verificador = 0;
 let criado;
 let serializado;
+let vazio = [];
 function irTela1()
 {
     document.querySelector('.page-content').classList.toggle('esconde');
@@ -488,23 +489,38 @@ function storageQuizzData(response){
 function renderAllQuizzesData(){
     let allQuizzes = document.querySelector(".all-quizzes .template-container")
     let myQuizzes = document.querySelector(".quizz-maker-small .template-container")
-    for (i = 0; i < quizzData.length; i++){
-        for (j = 0; j < criado.length; j++){
-            if (quizzData[i].id === criado[j]){
-                myQuizzes.innerHTML +=`<div onclick="openingQuizzPage(this)" id ="${quizzData[i].id} "class="my-quizzes-template" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[i].image}');">
-            <p>${quizzData[i].title}</p><div class="delete">
-            <ion-icon name="create-outline"></ion-icon>
-            <ion-icon name="trash-outline"></ion-icon>
-        </div>
-        </div>`
-            }
-            else {
-                allQuizzes.innerHTML += `<div onclick="openingQuizzPage(this)" id ="${quizzData[i].id} "class="all-quizzes-template" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[i].image}');">
+    
+    if(criado === null)
+    {
+        for (i = 0; i < quizzData.length; i++)
+        {
+            allQuizzes.innerHTML += `<div onclick="openingQuizzPage(this)" id ="${quizzData[i].id} "class="all-quizzes-template" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[i].image}');">
             <p>${quizzData[i].title}</p>
         </div>`
+        }
+    }
+    else
+    {
+        for (i = 0; i < quizzData.length; i++){
+            for (j = 0; j < criado.length; j++){
+    
+                if (quizzData[i].id === criado[j]){
+                    myQuizzes.innerHTML +=`<div onclick="openingQuizzPage(this)" id ="${quizzData[i].id} "class="my-quizzes-template" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[i].image}');">
+                <p>${quizzData[i].title}</p><div class="delete">
+                <ion-icon name="create-outline"></ion-icon>
+                <ion-icon name="trash-outline"></ion-icon>
+            </div>
+            </div>`
+                }
+                else {
+                    allQuizzes.innerHTML += `<div onclick="openingQuizzPage(this)" id ="${quizzData[i].id} "class="all-quizzes-template" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[i].image}');">
+                <p>${quizzData[i].title}</p>
+            </div>`
+                }
             }
         }
     }
+    
 }
 
 

@@ -48,7 +48,6 @@ function irTela2()
                     questions: [],
                     levels: []
                 }}}
-
 function irTela3()
 { 
     pergunta(numeroPerguntas);
@@ -455,6 +454,25 @@ function recebeMeuQuizz(resposta)
     criado = JSON.parse(criado);
     return criado;
 }
+function deleteQuizz(event)
+{
+    console.log(event);
+    let y = event.parentElement.parentElement;
+    console.log(y);
+    let x = y.getAttribute('id');
+    console.log(x);
+    x = Number(x);
+    console.log(x);
+    const deletando = axios.delete(API_URL, {
+        header: {
+                    'Secret-Key': `${x}`
+                 },
+
+                          });
+
+    deletando.catch(deuErro);
+}
+
 
 const API_URL = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes";
 let quizzData;
@@ -506,9 +524,10 @@ function renderAllQuizzesData(){
     
                 if (quizzData[i].id === criado[j]){
                     myQuizzes.innerHTML +=`<div onclick="openingQuizzPage(this)" id ="${quizzData[i].id} "class="my-quizzes-template" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[i].image}');">
-                <p>${quizzData[i].title}</p><div class="delete">
+                <p>${quizzData[i].title}</p>
+                <div class="delete">
                 <ion-icon name="create-outline"></ion-icon>
-                <ion-icon name="trash-outline"></ion-icon>
+                <ion-icon onClick="testa(event), deleteQuizz(this)"name="trash-outline"></ion-icon>
             </div>
             </div>`
                 }
@@ -522,9 +541,6 @@ function renderAllQuizzesData(){
     }
     
 }
-
-
-
 function openingQuizzPage(element){
     let selectedQuizzId = Number(element.getAttribute("id"))
     for (index = 0; index < quizzData.length; index++){
@@ -537,7 +553,6 @@ function openingQuizzPage(element){
         }
     }
 }
-
 function renderQuizzPageBanner(element){
     let quizzPage = document.querySelector(".quizz-page")
     console.log(quizzData[element],quizzData,index)
@@ -636,7 +651,6 @@ function addOpacityOnNotSelected (element){
     }
 
 }
-
 function scrollQuestionIntoView(element){
     let questionContainer = element.parentElement.parentElement
     questionContainer.nextSibling.scrollIntoView()
@@ -645,7 +659,6 @@ function scrollLevelIntoView(){
     let quizzPage = document.querySelector(".quizz-page")
     quizzPage.scrollIntoView(false)
 }
-
 function levelCalculator(){
     accuracyRate = Math.round(correctAnswer/(incorrectAnswer+correctAnswer)*100);
     let levelPorcentages = quizzData[globalIndex].levels.map(levels => levels.minValue)
@@ -658,12 +671,10 @@ function levelCalculator(){
         levelIndex = lowestLevelIndex;
     }
 }
-
 function backToHome (){
     window.location.reload()
     
 }
-
 function restartingQuizz(){
     correctAnswer = 0;
     incorrectAnswer = 0;
@@ -674,7 +685,6 @@ function restartingQuizz(){
     renderQuizzPageQuestions(globalIndex);
     quizzPage.scrollIntoView(true);
 }
-
 function showLoaderAndHidePage(){
     let pageContent = document.querySelector(".page-content");
     pageContent.classList.add("hidden");
@@ -694,5 +704,10 @@ gettingQuizzData()
 arrayIds()
 
     
+function testa(event)
+{
+    alert('deu bom!');
+    event.stopPropagation();
 
+}
 //testando 123 aahahahahahahahha

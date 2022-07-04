@@ -4,52 +4,57 @@ let quizz = {};
 let quizzCriado = {};
 let ids = [];
 let verificador = 0;
-let serializado;
-let criado;
-
 function irTela1()
 {
     document.querySelector('.page-content').classList.toggle('esconde');
     document.querySelector('.criarQuizz').classList.toggle('esconde');
+
     imprimeTela1();
+
 }
 function irTela2()
 {
-    let titulo = document.querySelector('input:nth-child(1)').value
-    let imagem = document.querySelector('input:nth-child(3)').value
-    numeroPerguntas = document.querySelector('input:nth-child(5)').value
-    numeroNiveis = document.querySelector('input:nth-child(7)').value
 
-    if(titulo.length < 20 || titulo.length > 65){
-            document.querySelector('input:nth-child(1)').classList.add('holderFundo');
-            document.querySelector('.inputs div:nth-child(2)').classList.remove('esconde');        
+    let titulo = document.querySelector('input:nth-child(1)').value
+    let imagem = document.querySelector('input:nth-child(2)').value
+    numeroPerguntas = document.querySelector('input:nth-child(3)').value
+    numeroNiveis = document.querySelector('input:nth-child(4)').value
+
+    if(titulo.length < 20 || titulo.length > 65)
+        {
+            alert("Seu título deve ter entre 20 e 65 caracteres!");        
         }
-        else if(verificaURL(imagem) === false){
-            document.querySelector('input:nth-child(3)').classList.add('holderFundo');
-            document.querySelector('.inputs div:nth-child(4)').classList.remove('esconde');
+        else if(verificaURL(imagem) === false)
+        {
+            alert("URL da imagem incorreta");
         }
-        else if(numeroPerguntas < 3){
-            document.querySelector('input:nth-child(5)').classList.add('holderFundo');
-            document.querySelector('.inputs div:nth-child(6)').classList.remove('esconde');
+        else if(numeroPerguntas < 3 || numeroNiveis < 2)
+        {
+            alert(
+                    `Número mínimo de Perguntas: 3\n\
+                    Número mínimo de Níveis: 2`);
         }
-        else if(numeroNiveis < 2){
-            document.querySelector('input:nth-child(7)').classList.add('holderFundo');
-            document.querySelector('.inputs div:nth-child(8)').classList.remove('esconde');
-        }
-        else {
+        else 
+        {
             document.querySelector('.tela1').classList.toggle('esconde');
             document.querySelector('.tela2').classList.toggle('esconde');
+
             imprimePerguntas();
+
             quizz = {
                     title: titulo,
                     image: imagem,
                     questions: [],
                     levels: []
-                }}}
+                }
+        }
+    
+}
 function irTela3()
 { 
     pergunta(numeroPerguntas);
-    if(numeroPerguntas%2 === 0){
+    if(numeroPerguntas%2 === 0)
+    {
         document.querySelector('.tela2').classList.toggle('esconde');
         document.querySelector('.tela3').classList.toggle('esconde');
     }
@@ -57,7 +62,9 @@ function irTela3()
 }
 function irTela4()
 {
-    if(numeroNiveis%2 === 0 && verificador === numeroNiveis){
+    //nivel(numeroNiveis);
+    if(numeroNiveis%2 === 0 && verificador === numeroNiveis)
+    {
         document.querySelector('.tela3').classList.toggle('esconde');
         document.querySelector('.tela4').classList.toggle('esconde');
     }
@@ -73,7 +80,7 @@ function irTela4()
         </div>
         <div onClick="backToHome ()" class="home">
         Voltar para home
-        </div>
+
     `;
 }
 function imprimeTela1()
@@ -82,23 +89,21 @@ function imprimeTela1()
     lista2.innerHTML = `
         <p>Comece pelo começo</p>
         <div class="inputs">
-            <input type="text" placeholder="Título do quizz"/>
-            <div class="erro esconde"><p>Seu título deve ter entre 20 e 65 caracteres!</p></div>
-            <input type="text" placeholder="Url da imagem do seu quizz"/>
-            <div class="erro esconde"><p>URL da imagem incorreta!</p></div>
-            <input type="text" placeholder="Quantidade de perguntas do quizz"/>
-            <div class="erro esconde"><p>Número mínimo de Perguntas: 3!</p></div>
-            <input type="text" placeholder="Quantidade de níveis do quizz"/>
-            <div class="erro esconde"><p>Número mínimo de Níveis: 2!</p></div>
+            <input type="text" placeholder="Título do quizz"class="teclado"/>
+            <input type="text" placeholder="Url da imagem do seu quizz"class="teclado"/>
+            <input type="text" placeholder="Quantidade de perguntas do quizz"class="teclado"/>
+            <input type="text" placeholder="Quantidade de níveis do quizz"class="teclado"/>
         </div>
         <div onclick="irTela2()" class="botaoNext">
             Prosseguir para criar perguntas
         </div>
     `;
+
 }
 function imprimePerguntas()
 {
     const lista = document.querySelector('.tela2');
+    
     lista.innerHTML = `<p>Crie suas perguntas</p>       
             <div class="pergunta 1 inputs caixa1">
                 <h1>Pergunta 1</h1>
@@ -127,7 +132,8 @@ function imprimePerguntas()
                 <div class="erro esconde"><p>URL da imagem incorreta!</p></div>
             </div>
          `;
-    for(let i = 1 ; i < numeroPerguntas ; i++){
+    for(let i = 1 ; i < numeroPerguntas ; i++)
+    {
         lista.innerHTML += `
           <div onClick="abreDivPergunta(this)" class="caixa${i+1}">
             <div class="px">
@@ -136,7 +142,6 @@ function imprimePerguntas()
             </div>
             <div class="inputs esconde">
                 <h1>Pergunta ${i+1}</h1>
-                
                 <input type="text" placeholder="Texto da pergunta"/>
                 <div class="erro esconde"><p>Sua pergunta deve ter mais de 20 caracteres!</p></div>
                 <input type="text" placeholder="Cor de fundo da pergunta"/>
@@ -171,7 +176,8 @@ function imprimePerguntas()
     `;
 }
 function imprimeNiveis()
-{ 
+{
+    
     const lista = document.querySelector('.tela3');
     lista.innerHTML = `<p>Agora, decida os níveis</p>       
             <div class="inputs p box1">
@@ -186,7 +192,8 @@ function imprimeNiveis()
                 <div class="erro esconde"><p>Sua descrição deve ter mais de 30 caracteres!</p></div>
             </div>
          `;
-    for(let i = 1 ; i < numeroNiveis ; i++){
+    for(let i = 1 ; i < numeroNiveis ; i++)
+    {
         lista.innerHTML += `
           <div onClick="abreDivPergunta(this)" class="box${i+1}">
             <div class="p${i+1} px">
@@ -272,6 +279,7 @@ function pergunta(indice)
         else{
             document.querySelector('.tela2').classList.toggle('esconde');
             document.querySelector('.tela3').classList.toggle('esconde');
+
             quizz.questions[i-1] = 
             {
                 title: pergunta,
@@ -298,7 +306,10 @@ function pergunta(indice)
                         text: incorreta3,
                         image: imgIncorreta3,
                         isCorrectAnswer: false
-                    },]}}}
+                    },]
+        }
+    }
+}
 function abreDivPergunta(elemento)
 {
     elemento.classList.toggle('teste');
@@ -317,20 +328,25 @@ function nivel(indice)
         let acerto = document.querySelector('.box'+i+' '+'input:nth-child(4)').value;
         let imgNivel = document.querySelector('.box'+i+' '+'input:nth-child(6)').value;
         let descricao = document.querySelector('.box'+i+' '+'input:nth-child(8)').value;
- 
-        if(titulo.length < 10){
+
+        
+        if(titulo.length < 10)
+        {
             document.querySelector('.box'+i+' '+'input:nth-child(2)').classList.add('holderFundo');
             document.querySelector('.box'+i+' '+'div:nth-child(3)').classList.remove('esconde');       
         }
-        else if(acerto < 0 || acerto > 100 || acerto === ''|| acerto === NaN){
+        else if(acerto < 0 || acerto > 100 || acerto === ''|| acerto === NaN)
+        {
             document.querySelector('.box'+i+' '+'input:nth-child(4)').classList.add('holderFundo');
             document.querySelector('.box'+i+' '+'div:nth-child(5)').classList.remove('esconde');  
         }
-        else if(verificaURL(imgNivel) === false){
+        else if(verificaURL(imgNivel) === false)
+        {
             document.querySelector('.box'+i+' '+'input:nth-child(6)').classList.add('holderFundo');
             document.querySelector('.box'+i+' '+'div:nth-child(7)').classList.remove('esconde');
         }
-        else if(descricao.length < 30){
+        else if(descricao.length < 30)
+        {
             document.querySelector('.box'+i+' '+'input:nth-child(8)').classList.add('holderFundo');
             document.querySelector('.box'+i+' '+'div:nth-child(9)').classList.remove('esconde');        
         }
@@ -345,6 +361,7 @@ function nivel(indice)
                     minValue: acerto
                 }
             }
+
             aux++;
             console.log(aux);
             if(aux == numeroNiveis)
@@ -412,27 +429,33 @@ function deuErro()
 function recebeMeuQuizz(resposta)
 {
     quizzCriado = resposta.data;
-    ids = [];
-    criado = window.localStorage.getItem('meuQuizz');
+    console.log(resposta);
+    console.log(quizzCriado);
+    console.log(quizzCriado.id);
+
+    let criado = window.localStorage.getItem('meusQuizz');
     if(criado === null)
     {
-        ids[0] = quizzCriado.id;
-        criado = JSON.stringify(ids);
-        window.localStorage.setItem('meuQuizz', criado);
-        console.log(criado);
+        ids = quizzCriado.id; //ids = [45]
+        const serializado = JSON.stringify(ids); // serializado = '[45]'
+        window.localStorage.setItem('meusQuizz', serializado); // meusQuizz / '[45]'
     }
     else
-    {   
-        criado = JSON.parse(criado);
-        criado[criado.length] = quizzCriado.id;
-        serializado = JSON.stringify(criado); 
-        window.localStorage.setItem('meuQuizz', serializado); 
-        console.log(serializado);
+    {
+        const deserializado = JSON.parse(criado); // deserializado = [45]
+        ids = quizzCriado.id; // ids = [90]
+        for(let i = 0 ; i < deserializado.length ; i++ )
+        {
+            ids.push(deserializado[i]); // ids = [45,90]
+            console.log(ids);
+        }
+        const serializado = JSON.stringify(ids); // serializado = '[45,90]'
+        window.localStorage.setItem('meusQuizz', serializado); // meusQuizz / '[45,90]'
     }   
 }
-function arrayIds()
+ function arrayIds()
 {
-    criado = window.localStorage.getItem('meuQuizz');
+    criado = window.localStorage.getItem('meusQuizz');
     criado = JSON.parse(criado);
     return criado;
 }
@@ -444,14 +467,11 @@ let correctAnswer = 0;
 let incorrectAnswer = 0;
 let accuracyRate = 0;
 let levelIndex = 0;
+let globalIndex =0;
 
 
 
-function openQuizzCreatorPage (){
-    hideHomePage();
-    // Function Render Quizz Creator Page
 
-}
 function hideHomePage (){
     let homePage = document.querySelector(".home-page")
     homePage.classList.add("hidden")
@@ -471,58 +491,66 @@ function storageQuizzData(response){
 }
 function renderAllQuizzesData(){
     let allQuizzes = document.querySelector(".all-quizzes .template-container")
+    let myQuizzes = document.querySelector(".quizz-maker-small .template-container")
     for (i = 0; i < quizzData.length; i++){
-        allQuizzes.innerHTML += `<div onclick="openingQuizzPage(this)" id ="${quizzData[i].id} "class="all-quizzes-template" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[i].image}');">
+        //for (j = 0; j <)
+        if (quizzData[i].id === 3266){
+            myQuizzes.innerHTML +=`<div onclick="openingQuizzPage(this)" id ="${quizzData[i].id} "class="my-quizzes-template" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[i].image}');">
+            <p>${quizzData[i].title}</p>
+        </div>`
+        }
+        else {
+            allQuizzes.innerHTML += `<div onclick="openingQuizzPage(this)" id ="${quizzData[i].id} "class="all-quizzes-template" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[i].image}');">
         <p>${quizzData[i].title}</p>
-        <div class="delete">
-        <ion-icon name="create-outline"></ion-icon>
-        <ion-icon name="trash-outline"></ion-icon>
-    </div>
     </div>`
+        }
     }
 }
-gettingQuizzData()
+
 
 function openingQuizzPage(element){
     let selectedQuizzId = Number(element.getAttribute("id"))
     for (index = 0; index < quizzData.length; index++){
         if (selectedQuizzId === quizzData[index].id){
             globalIndex = index;
+            showLoaderAndHidePage()
             hideHomePage()
-            renderQuizzPageBanner()
-            renderQuizzPageQuestions()
+            renderQuizzPageBanner(index)
+            renderQuizzPageQuestions(index)
         }
     }
 }
-function renderQuizzPageBanner(){
+
+function renderQuizzPageBanner(element){
     let quizzPage = document.querySelector(".quizz-page")
-    console.log(quizzData[index],quizzData,index)
-    quizzPage.innerHTML += `<div style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[index].image}');"class="banner">
-    <p>${quizzData[index].title}</p></div>`
+    console.log(quizzData[element],quizzData,index)
+    quizzPage.innerHTML += `<div style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[element].image}');"class="banner">
+    <p>${quizzData[element].title}</p></div>`
 }
-function renderQuizzPageQuestions(){ 
-    
-    let questionsData = quizzData[index].questions
+function renderQuizzPageQuestions(element){ 
+    let j = [0,1,2,3]
+    j = j.sort(() => Math.random() - 0.5)
+    let questionsData = quizzData[element].questions
     let quizzPage = document.querySelector(".quizz-page")
         questionsData.map((question)=>{
             quizzPage.innerHTML += `<div class="question-container">
         <p style ="background-color:${question.color} ; "class="question-title">${question.title}</p>
         <div class="question-template">
-        <div onclick="changeAnswerTextColor(this)" class="options ${question.answers[0].isCorrectAnswer}">
-                        <img src ="${question.answers[0].image}">
-                        <p class="answer-text">${question.answers[0].text}</p>
+        <div onclick="changeAnswerTextColor(this)" class="options ${question.answers[j[0]].isCorrectAnswer}">
+                        <img src ="${question.answers[j[0]].image}">
+                        <p class="answer-text">${question.answers[j[0]].text}</p>
                     </div>
-                    <div onclick="changeAnswerTextColor(this)" class="options ${question.answers[1].isCorrectAnswer}">
-                        <img src ="${question.answers[1].image}">
-                        <p class="answer-text">${question.answers[1].text}</p>
+                    <div onclick="changeAnswerTextColor(this)" class="options ${question.answers[j[1]].isCorrectAnswer}">
+                        <img src ="${question.answers[j[1]].image}">
+                        <p class="answer-text">${question.answers[j[1]].text}</p>
                     </div>
-                    <div onclick="changeAnswerTextColor(this)" class="options ${question.answers[2].isCorrectAnswer}">
-                        <img src ="${question.answers[2].image}">
-                        <p class="answer-text ">${question.answers[2].text}</p>
+                    <div onclick="changeAnswerTextColor(this)" class="options ${question.answers[j[2]].isCorrectAnswer}">
+                        <img src ="${question.answers[j[2]].image}">
+                        <p class="answer-text ">${question.answers[j[2]].text}</p>
                     </div>
-                    <div onclick="changeAnswerTextColor(this)" class="options ${question.answers[3].isCorrectAnswer}">
-                        <img src ="${question.answers[3].image}">
-                        <p class="answer-text">${question.answers[3].text}</p>
+                    <div onclick="changeAnswerTextColor(this)" class="options ${question.answers[j[3]].isCorrectAnswer}">
+                        <img src ="${question.answers[j[3]].image}">
+                        <p class="answer-text">${question.answers[j[3]].text}</p>
                     </div>` 
         })
         quizzPage.innerHTML+=`<div></div>` 
@@ -539,7 +567,7 @@ function renderQuizzLevel(){
     </div>
     </div>
     <div class="quizz-page-end">
-                <button class="restart-quizz">Reiniciar quizz</button>
+                <button onclick="restartingQuizz()" class="restart-quizz">Reiniciar quizz</button>
                 <button onclick="backToHome()" class="home">Voltar para home</button>
             </div>`
 
@@ -585,13 +613,13 @@ function addOpacityOnNotSelected (element){
     function checkForLastQuestion(){
         let lastQuestion = clickedQuestion.parentElement.parentElement.lastElementChild.previousElementSibling.lastElementChild
         if(lastQuestion === clickedQuestion){
-            console.log("penultimo elemento")
             renderQuizzLevel()
             setTimeout(function (){scrollLevelIntoView()},2000)
         }    
     }
 
 }
+
 function scrollQuestionIntoView(element){
     let questionContainer = element.parentElement.parentElement
     questionContainer.nextSibling.scrollIntoView()
@@ -600,10 +628,9 @@ function scrollLevelIntoView(){
     let quizzPage = document.querySelector(".quizz-page")
     quizzPage.scrollIntoView(false)
 }
+
 function levelCalculator(){
     accuracyRate = Math.round(correctAnswer/(incorrectAnswer+correctAnswer)*100);
-    console.log(accuracyRate)
-    console.log(quizzData[globalIndex].levels)
     let levelPorcentages = quizzData[globalIndex].levels.map(levels => levels.minValue)
     let highestLevelIndex = levelPorcentages.indexOf(Math.max(...levelPorcentages))
     let lowestLevelIndex = levelPorcentages.indexOf(Math.min(...levelPorcentages))
@@ -613,23 +640,39 @@ function levelCalculator(){
     else {
         levelIndex = lowestLevelIndex;
     }
-    console.log(levelIndex)
 }
+
 function backToHome (){
     window.location.reload()
 }
+
+function restartingQuizz(){
+    correctAnswer = 0;
+    incorrectAnswer = 0;
+    showLoaderAndHidePage()
+    let quizzPage = document.querySelector(".quizz-page");
+    quizzPage.innerHTML = "";
+    renderQuizzPageBanner(globalIndex);
+    renderQuizzPageQuestions(globalIndex);
+    quizzPage.scrollIntoView(true);
+}
+
+function showLoaderAndHidePage(){
+    let pageContent = document.querySelector(".page-content");
+    pageContent.classList.add("hidden");
+    let loader = document.querySelector(".loader");
+    loader.classList.remove("hidden")
+    setTimeout(removeLoaderAndShowPage,1000)
     
-   
-
-
+}
 function removeLoaderAndShowPage(){
     let pageContent = document.querySelector(".page-content");
     pageContent.classList.remove("hidden");
     let loader = document.querySelector(".loader");
     loader.classList.add("hidden")
 }
-showLoaderAndHidePage();
+showLoaderAndHidePage()
+gettingQuizzData()
 
-///aaaaaaaaaaaa
     
 

@@ -438,6 +438,16 @@ input.holderFundo, textarea{
   }
 
 @media (max-width:1100px){
+    .px {
+        width: 340px;
+    }
+    .inputs {
+        width: 340px;
+    }
+    .inputs input {
+        width: 320px;
+    }
+
     .quizz-header {
         justify-content: space-between;
     }

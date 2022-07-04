@@ -455,7 +455,7 @@ function recebeMeuQuizz(resposta)
 }
 function arrayIds()
 {
-    criado = window.localStorage.getItem('meuQuizz');
+    criado = window.localStorage.getItem('meusQuizz');
     criado = JSON.parse(criado);
     return criado;
 }
@@ -493,6 +493,7 @@ function renderAllQuizzesData(){
     let allQuizzes = document.querySelector(".all-quizzes .template-container")
     let myQuizzes = document.querySelector(".quizz-maker-small .template-container")
     for (i = 0; i < quizzData.length; i++){
+        //for (j = 0; j <)
         if (quizzData[i].id === 3266){
             myQuizzes.innerHTML +=`<div onclick="openingQuizzPage(this)" id ="${quizzData[i].id} "class="my-quizzes-template" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%), url('${quizzData[i].image}');">
             <p>${quizzData[i].title}</p>

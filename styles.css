@@ -421,7 +421,6 @@ input.holderFundo, textarea{
     font-size: 16px;
     font-weight: 400;
 }
-
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #EC362D; /* Blue */
@@ -437,3 +436,65 @@ input.holderFundo, textarea{
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+
+@media (max-width:1100px){
+    .quizz-header {
+        justify-content: space-between;
+    }
+    .question-title {
+        height: 10vh;
+    }
+    .template-container{
+        flex-direction: column;
+        
+    }
+    .my-quizzes-template,.all-quizzes-template{
+        margin-right: 0px;
+        min-width:100%;
+        max-width:100%;
+        background-size:cover;                     
+        background-repeat:no-repeat;
+        background-position:center center; 
+    }
+    .question-container {
+        
+        align-items: center;
+       
+    }
+    .question-template{
+       max-width: 678px;
+       min-width: 678px;
+    }
+   
+}
+@media (max-width:670px){
+    .question-container {
+        width: 100%;
+    }
+    .question-template {
+        justify-content:space-evenly;
+        max-width: 400px;
+        min-width: 400px;
+    }
+    .options img {
+        width: 153px;
+        height: 100px;
+    }
+    .options p {
+        max-width: 90px;
+        font-size: 10px;
+    }
+   .level-container {
+    width: 375px;
+    align-items: center;
+   }
+   .level-template p {
+    width:50%;
+    
+   }
+   .level-template img {
+    width: 50%;
+    height: 273px;
+}
+}
+   

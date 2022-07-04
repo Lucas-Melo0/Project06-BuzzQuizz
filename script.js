@@ -749,3 +749,14 @@ showLoaderAndHidePage()
 gettingQuizzData()
 arrayIds()
    
+checkForMyQuizzes()
+
+function checkForMyQuizzes(){
+    let zeroMyQuizzes = document.querySelector(".quizz-maker-big");
+    let myQuizzes = document.querySelector(".quizz-maker-small")
+    console.log(criado)
+    if (criado !== null){
+        zeroMyQuizzes.classList.add("hidden")
+        myQuizzes.classList.remove("hidden")
+    }
+}

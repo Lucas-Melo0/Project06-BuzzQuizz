@@ -5,8 +5,11 @@ let quizzCriado = {};
 let ids = [];
 let verificador = 0;
 let criado;
+let criado2;
 let serializado;
-let vazio = [];
+let serializado2;
+let keys = [];
+
 function irTela1()
 {
     document.querySelector('.page-content').classList.toggle('esconde');
@@ -73,7 +76,7 @@ function irTela4()
         <p>Seu quizz está pronto!</p>
         <img src="${quizz.image}" alt="">
         <h1>${quizz.title}</h1>
-        <div class="botaoNext">
+        <div onClick="acessaQuizzCriado" class="botaoNext">
         Acessar Quizz
         </div>
         <div onClick="backToHome()" class="home">
@@ -427,35 +430,65 @@ function deuErro()
 {
     console.log('deu alguma coisa errada ai mano');
 }
+function deuBom()
+{
+    console.log('deu bom! Quizz apagado!');
+}
 function recebeMeuQuizz(resposta)
 {
     quizzCriado = resposta.data;
+    
     ids = [];
+    keys = [];
+
     criado = window.localStorage.getItem('meuQuizz');
+    criado2 = window.localStorage.getItem('meuKey');
+    criado3 = window.localStorage.getItem('meuObjeto');
+
     if(criado === null)
     {
         ids[0] = quizzCriado.id;
+        keys[0] = quizzCriado.key;
+
         criado = JSON.stringify(ids);
+        criado2 = JSON.stringify(keys);
+       
         window.localStorage.setItem('meuQuizz', criado);
+        window.localStorage.setItem('meuKey', criado2);
+     
         console.log(criado);
+        console.log(criado2);
+      
     }
     else
     {
         criado = JSON.parse(criado);
+        criado2 = JSON.parse(criado2);
+        
         criado[criado.length] = quizzCriado.id;
-        serializado = JSON.stringify(criado); 
+        criado2[criado2.length] = quizzCriado.key;
+
+        serializado = JSON.stringify(criado);
+        serializado2 = JSON.stringify(criado2);
+      
         window.localStorage.setItem('meuQuizz', serializado); 
+        window.localStorage.setItem('meuKey', serializado2); 
+      
         console.log(serializado);
+        console.log(serializado2);
+        
     }
 }
  function arrayIds()
 {
     criado = window.localStorage.getItem('meuQuizz');
+    criado2 = window.localStorage.getItem('meuKey');
     criado = JSON.parse(criado);
+    criado2 = JSON.parse(criado2);
     return criado;
 }
 function deleteQuizz(event)
-{
+{ 
     console.log(event);
     let y = event.parentElement.parentElement;
     console.log(y);
@@ -463,17 +496,33 @@ function deleteQuizz(event)
     console.log(x);
     x = Number(x);
     console.log(x);
-    const deletando = axios.delete(API_URL, {
-        header: {
-                    'Secret-Key': `${x}`
-                 },
 
-                          });
+    for(let i = 0; i < criado.length ; i++)
+    {
+        if(x === criado[i])
+        {
+            let key = criado2[i];
+            
+            const deletando = axios.delete(`${API_URL2}/quizzes/${x}`, {
+                headers: {
+                            'Secret-Key': key
+                         },
+                                  });
+            deletando.catch(deuErro);
+            deletando.then(deuBom);
+        }
+    }
+}
+function testa(event)
+{
+    event.stopPropagation();
+}
+function acessaQuizzCriado()
+{
 
-    deletando.catch(deuErro);
 }
 
-
+const API_URL2= "https://mock-api.driven.com.br/api/v6/buzzquizz";
 const API_URL = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes";
 let quizzData;
 let index = 0;
@@ -483,9 +532,6 @@ let accuracyRate = 0;
 let levelIndex = 0;
 let globalIndex =0;
 let myquizzes;
-
-
-
 
 function hideHomePage (){
     let homePage = document.querySelector(".home-page")
@@ -527,7 +573,7 @@ function renderAllQuizzesData(){
                 <p>${quizzData[i].title}</p>
                 <div class="delete">
                 <ion-icon name="create-outline"></ion-icon>
-                <ion-icon onClick="testa(event), deleteQuizz(this)"name="trash-outline"></ion-icon>
+                <ion-icon onClick="testa(event); if(confirm('Quer mesmo apagar seu lindo Quizz?')) deleteQuizz(this);"name="trash-outline"></ion-icon>
             </div>
             </div>`
                 }
@@ -702,12 +748,4 @@ function removeLoaderAndShowPage(){
 showLoaderAndHidePage()
 gettingQuizzData()
 arrayIds()
-
-    
-function testa(event)
-{
-    alert('deu bom!');
-    event.stopPropagation();
-
-}
-//testando 123 aahahahahahahahha
+   
